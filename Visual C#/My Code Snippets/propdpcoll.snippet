@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
       <Title>Define a generic collection DependencyProperty</Title>
@@ -15,12 +15,7 @@
         <Literal>
           <ID>itemType</ID>
           <ToolTip>Collection element type</ToolTip>
-          <Default>int</Default>
-        </Literal>
-        <Literal>
-          <ID>collType</ID>
-          <ToolTip>Generic collection type</ToolTip>
-          <Default>ObservableCollection</Default>
+          <Default>ElementType</Default>
         </Literal>
         <Literal>
           <ID>property</ID>
@@ -30,24 +25,22 @@
         <Literal>
           <ID>ownerclass</ID>
           <Function>ClassName()</Function>
-          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <ToolTip>The owning class of this Property. Typically the class that it is declared in.</ToolTip>
         </Literal>
-      </Declarations>
-      <Code Language="csharp">
-<![CDATA[
-private static readonly DependencyPropertyKey $property$PropertyKey =
-    DependencyProperty.RegisterReadOnly(nameof($property$), typeof($collType$<$itemType$>), typeof($ownerclass$),
-        new PropertyMetadata(new $collType$<$itemType$>()));
+        </Declarations>
+      <Code Language="csharp"><![CDATA[#region $property$ Property Members
 
+private static readonly DependencyPropertyKey $property$PropertyKey = DependencyProperty.RegisterReadOnly(nameof($property$), typeof(ObservableCollection<$itemType$>), typeof($ownerclass$));
+
+/// <summary>
+/// Identifies the <see cref="$property$"/> dependency property.
+/// </summary>
 public static readonly DependencyProperty $property$Property = $property$PropertyKey.DependencyProperty;
 
-public $collType$<$itemType$> $property$
-{
-    get { return ($collType$<$itemType$>)this.GetValue($property$Property); }
-    private set { this.SetValue($property$PropertyKey, value); }
-}
-$end$]]>
-      </Code>
+public ObservableCollection<$itemType$> $property$ { get => (ObservableCollection<$itemType$>)GetValue($property$Property); private set => SetValue($property$PropertyKey, value); }
+
+#endregion
+// TODO: Add to initialization code to constructor: $end$$property$ = new();]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

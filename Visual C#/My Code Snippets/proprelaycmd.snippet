@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
       <Title>Define a relay command property</Title>
@@ -20,25 +20,31 @@
         <Literal>
           <ID>ownerclass</ID>
           <Function>ClassName()</Function>
-          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <ToolTip>The owning class of this Property. Typically the class that it is declared in.</ToolTip>
         </Literal>
       </Declarations>
-      <Code Language="csharp">
-<![CDATA[
-private static readonly DependencyPropertyKey $command$CommandPropertyKey = DependencyProperty.RegisterReadOnly(nameof($command$Command),
-    typeof(Commands.RelayCommand), typeof($ownerclass$), new PropertyMetadata(null, null, (DependencyObject d, object baseValue) =>
-        (baseValue is Commands.RelayCommand rc) ? rc : new Commands.RelayCommand((($ownerclass$)d).On$command$Execute)));
+      <Code Language="csharp"><![CDATA[#region $command$ Command Property Members
 
-public static readonly DependencyProperty $command$CommandProperty = $command$CommandPropertyKey.DependencyProperty;
+private static readonly DependencyPropertyKey $command$PropertyKey = DependencyProperty.RegisterReadOnly(nameof($command$), typeof(Commands.RelayCommand), typeof($ownerclass$));
 
-public Commands.RelayCommand $command$Command => (Commands.RelayCommand)GetValue($command$CommandProperty);
+/// <summary>
+/// Identifies the <see cref="$command$"/> dependency property.
+/// </summary>
+public static readonly DependencyProperty $command$Property = $command$PropertyKey.DependencyProperty;
 
-private void On$command$Execute(object parameter)
+public Commands.RelayCommand $command$ => (Commands.RelayCommand)GetValue($command$Property);
+
+/// <summary>
+/// Called when the <see cref="$command$">$command$ Command</see> is invoked.
+/// </summary>
+/// <param name="parameter">The parameter value that was passed to the <see cref="System.Windows.Input.ICommand.Execute(object)"/> method on <see cref="$command$" />.</param>
+protected virtual void On$command$Command(object parameter)
 {
-  // TODO: Implement On$command$Execute Logic$end$
+  // TODO: Implement On$command$Command Logic
+  // TODO: Add initialization code to constructor: $end$SetValue($command$PropertyKey, new Commands.RelayCommand(On$command$Command));
 }
-]]>
-      </Code>
+
+#endregion]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
