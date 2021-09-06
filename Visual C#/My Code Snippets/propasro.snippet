@@ -30,8 +30,11 @@
 /// </summary>
 public const string PropertyName_$property$ = "$property$";
 
-private static readonly DependencyPropertyKey $property$PropertyKey = DependencyProperty.RegisterAttachedReadOnly(nameof($property$), typeof(string), typeof($ownerclass$),
-    new PropertyMetadata("") { CoerceValueCallback = NonWhiteSpaceOrEmptyStringCoersion.Default.ToCoerceValueCallback() });
+private static readonly DependencyPropertyKey $property$PropertyKey = DependencyPropertyBuilder<$ownerclass$, string>
+    .RegisterAttached(nameof($property$))
+    .DefaultValue("")
+    .CoerseWith(NonWhiteSpaceOrEmptyStringCoersion.Default)
+    .AsReadOnly();
 
 /// <summary>
 /// Identifies the <see cref="$property$"/> dependency property.

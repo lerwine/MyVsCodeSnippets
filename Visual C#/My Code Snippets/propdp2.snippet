@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
@@ -38,7 +38,10 @@
 /// <summary>
 /// Identifies the <see cref="$property$"/> dependency property.
 /// </summary>
-public static readonly DependencyProperty $property$Property = DependencyProperty.Register(nameof($property$), typeof($type$), typeof($ownerclass$), new PropertyMetadata($defaultvalue$));
+public static readonly DependencyProperty $property$Property = DependencyPropertyBuilder<$ownerclass$, $type$>
+    .Register(nameof($property$))
+    .DefaultValue($defaultvalue$)
+    .AsReadWrite();
 
 public $type$ $property$ { get => ($type$)GetValue($property$Property); set => SetValue($property$Property, value); }
   

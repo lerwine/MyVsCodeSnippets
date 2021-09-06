@@ -35,7 +35,9 @@
 /// </summary>
 public const string PropertyName_$property$ = "$property$";
 
-private static readonly DependencyPropertyKey $property$PropertyKey = DependencyProperty.RegisterAttachedReadOnly(nameof($property$), typeof(ObservableCollection<$itemType$>), typeof($ownerclass$));
+private static readonly DependencyPropertyKey $property$PropertyKey = DependencyPropertyBuilder<$ownerclass$, ObservableCollection<$itemType$>>
+    .RegisterAttached(nameof($property$))
+    .AsReadOnly();
 
 /// <summary>
 /// Identifies the <see cref="$property$"/> dependency property.

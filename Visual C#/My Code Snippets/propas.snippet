@@ -33,8 +33,11 @@ public const string PropertyName_$property$ = "$property$";
 /// <summary>
 /// Identifies the <see cref="$property$"/> dependency property.
 /// </summary>
-public static readonly DependencyProperty $property$Property = DependencyProperty.RegisterAttached(nameof($property$), typeof(string), typeof($ownerclass$),
-    new PropertyMetadata("") { CoerceValueCallback = NonWhiteSpaceOrEmptyStringCoersion.Default.ToCoerceValueCallback() });
+public static readonly DependencyProperty $property$Property = DependencyPropertyBuilder<$ownerclass$, string>
+    .RegisterAttached(nameof($property$))
+    .DefaultValue("")
+    .CoerseWith(NonWhiteSpaceOrEmptyStringCoersion.Default)
+    .AsReadWrite();
 
 public static string Get$property$([DisallowNull] DependencyObject obj) => obj.GetValue($property$Property) as string;
 

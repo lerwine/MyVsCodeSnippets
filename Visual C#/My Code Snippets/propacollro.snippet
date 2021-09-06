@@ -35,16 +35,20 @@
 /// </summary>
 public const string PropertyName_$property$ = "$property$";
 
-private static readonly DependencyPropertyKey Backing$property$PropertyKey = DependencyProperty.RegisterAttachedReadOnly(nameof(Backing$property$), typeof(ObservableCollection<$itemType$>), typeof($ownerclass$),
-new PropertyMetaData((DependencyObject d, DependencyPropertyChangedEventArgs e) =>
-{
-    if (e.NewValue is ObservableCollection<$itemType$> newValue)
-        d.SetValue($property$PropertyKey, new ReadOnlyObservableCollection<$itemType$>(newValue));
-    else
-        d.SetValue($property$PropertyKey, null);
-});
+private static readonly DependencyPropertyKey Backing$property$PropertyKey = DependencyPropertyBuilder<$ownerclass$, ObservableCollection<$itemType$>>
+    .RegisterAttached(nameof(Backing$property$))
+    .OnChanged(d, oldValue, newValue) =>
+    {
+        if (newValue is null)
+            d.SetValue($property$PropertyKey, null);
+        else
+            d.SetValue($property$PropertyKey, new ReadOnlyObservableCollection<$itemType$>(newValue));
+    })
+    .AsReadOnly();
 
-private static readonly DependencyPropertyKey $property$PropertyKey = DependencyProperty.RegisterAttachedReadOnly(nameof($property$), typeof(ReadOnlyObservableCollection<$itemType$>), typeof($ownerclass$));
+private static readonly DependencyPropertyKey $property$PropertyKey = DependencyPropertyBuilder<$ownerclass$, ReadOnlyObservableCollection<$itemType$>>
+    .RegisterAttached(nameof($property$))
+    .AsReadOnly();
 
 /// <summary>
 /// Identifies the <see cref="Backing$property$"/> dependency property.
@@ -56,15 +60,13 @@ private static readonly DependencyProperty Backing$property$Property = Backing$p
 /// </summary>
 public static readonly DependencyProperty $property$Property = $property$PropertyKey.DependencyProperty;
 
-private ObservableCollection<$itemType$> Backing$property$ => (ObservableCollection<$itemType$>)GetValue(Backing$property$Property);
-
 private static ObservableCollection<$itemType$> GetBacking$property$([DisallowNull] DependencyObject obj) => obj.GetValue(Backing$property$Property) as ObservableCollection<$itemType$>;
 
 private static void SetBacking$property$([DisallowNull] DependencyObject obj, ObservableCollection<$itemType$> value) => obj.SetValue(Backing$property$PropertyKey, value);
 
 public static ReadOnlyObservableCollection<$itemType$> Get$property$([DisallowNull] DependencyObject obj) => obj.GetValue($property$Property) as ReadOnlyObservableCollection<$itemType$>;
 
-#endregion#$end$]]></Code>
+#endregion$end$]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

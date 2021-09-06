@@ -40,8 +40,10 @@
 /// </summary>
 public const string PropertyName_$property$ = "$property$";
 
-private static readonly DependencyPropertyKey $property$PropertyKey = DependencyProperty.RegisterAttachedReadOnly(nameof($property$), typeof($type$), typeof($ownerclass$),
-        new PropertyMetadata($defaultvalue$));
+private static readonly DependencyPropertyKey $property$PropertyKey = DependencyPropertyBuilder<$ownerclass$, $type$>
+    .RegisterAttached(nameof($property$))
+    .DefaultValue($defaultvalue$)
+    .AsReadOnly();
 
 /// <summary>
 /// Identifies the <see cref="$property$"/> dependency property.
