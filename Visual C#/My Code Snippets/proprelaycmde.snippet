@@ -44,10 +44,10 @@ public Commands.RelayCommand $command$ => (Commands.RelayCommand)GetValue($comma
 /// </summary>
 /// <param name="parameter">The parameter value that was passed to the <see cref="System.Windows.Input.ICommand.Execute(object)"/> method on <see cref="$command$" />.</param>
 protected void Raise$command$Command(object parameter) => $command$Command?.Invoke(this, new(parameter));
-{
-  try { On$command$Command(parameter); }
-  finally { $command$Command?.Invoke(this, new(parameter)); }
-}
+// {
+//   try { On$command$Command(parameter); }
+//   finally { $command$Command?.Invoke(this, new(parameter)); }
+// }
 
 /// <summary>
 /// Called when the <see cref="$command$">$command$ Command</see> is invoked.
